@@ -86,18 +86,64 @@ int getmax(node *root){
 }
 //error
 void itera_inorder(node *root){
-    stack<node *> st;
-    node *curr=root;
-    while(curr!=NULL || st.empty()==false){
-        while(curr!=NULL){
-            st.push(curr);
-            curr=curr->left;
-        }
-        // curr=st.pop();
-        st.pop();
-        cout<<(curr->key)<<" ";
-        curr=curr->right;
+    stack<node *> treeStack;
+	node *currentNode = root;
 
+	while (currentNode != NULL || treeStack.empty() == false)
+	{
+		while (currentNode != NULL)
+		{
+			treeStack.push(currentNode);
+			currentNode = currentNode->left;
+		}
+		
+		currentNode = treeStack.top();
+		treeStack.pop();
+      
+		cout << currentNode->key<<" ";
+        
+		currentNode = currentNode->right;
+	} 
+}
+void itera_preorder(node *root){
+    if (root == NULL)
+        return;
+
+    stack<node*> nodeStack;
+    nodeStack.push(root);
+ 
+    while (nodeStack.empty() == false) {
+        struct node* node = nodeStack.top();
+        printf("%d ", node->key);
+        nodeStack.pop();
+ 
+        if (node->right)
+            nodeStack.push(node->right);
+        if (node->left)
+            nodeStack.push(node->left);
+    }
+}
+
+void preorderIterative(node* root)
+{
+    if (root == NULL)
+        return;
+ 
+    stack<node*> st;
+    node* curr = root;
+    while (!st.empty() || curr != NULL) {
+        while (curr != NULL) {
+            cout << curr->key << " ";
+ 
+            if (curr->right)
+                st.push(curr->right);
+ 
+            curr = curr->left;
+        }
+        if (st.empty() == false){
+            curr = st.top();
+            st.pop();
+        }
     }
 }
 int main(){
@@ -113,10 +159,14 @@ int main(){
     // postorder(root);
     // cout<< height(root);
     // cout<<endl;
-    // printKDist(root, 1);
+    printKDist(root, 1);
     // levelorder(root);
     // cout<<getSize(root);
     // cout<<getmax(root);
-    itera_inorder(root);
+    // itera_inorder(root);
+    // cout<<endl;
+    // itera_preorder(root);
+    // cout<<endl;
+    // preorderIterative(root);
 return 0;
 }

@@ -6,7 +6,7 @@ void toi(int n, char A, char B, char C){
         return;
     }
     toi(n-1,A,C,B);
-    cout<<"move n from a to c"<<endl;
+    cout<<"move " <<n<<" from a to c"<<endl;
     toi(n-1,A,B,C);
 }
 int main(){
