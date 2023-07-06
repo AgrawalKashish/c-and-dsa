@@ -9,6 +9,6 @@ void subsets(string s, string curr, int i){
     subsets(s, curr+ s[i], i+1);
 }
 int main(){
-    subsets("abcd", " ", 0);
+    subsets("cgfgfc", " ", 0);
 return 0;
 }
